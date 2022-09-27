@@ -93,6 +93,7 @@
       rustc
       rust-analyzer
       git
+      gnomeExtensions.material-shell
     ];
   };
 
