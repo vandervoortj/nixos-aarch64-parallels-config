@@ -83,15 +83,18 @@
     shell = pkgs.fish;
   };
 
-  environment.systemPackages = with pkgs; [
-    vim 
-    wget
-    cargo
-    rustup
-    rustc
-    rust-analyzer
-    git
-  ];
+  environment = {
+    gnome.excludePackages = [ pkgs.gnome-tour ];
+    systemPackages = with pkgs; [
+      vim 
+      wget
+      cargo
+      rustup
+      rustc
+      rust-analyzer
+      git
+    ];
+  };
 
   programs = {
     mtr.enable = true;
