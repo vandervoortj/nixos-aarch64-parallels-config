@@ -99,6 +99,7 @@
   programs = {
     mtr.enable = true;
     fish.enable = true;
+    starship.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
