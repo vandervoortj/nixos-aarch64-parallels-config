@@ -94,12 +94,20 @@
       rust-analyzer
       git
       gnomeExtensions.material-shell
+      vimPlugins.vim-nix
+      vimPlugins.coc-rust-analyzer
     ];
   };
 
   programs = {
     mtr.enable = true;
     fish.enable = true;
+    neovim = {
+      enable = true;
+      viAlias = true;
+      vimAlias = true;
+      defaultEditor = true;
+    };
     starship = {
       enable = true;
       settings = {
