@@ -33,6 +33,7 @@
   services = {
     xserver = {
       enable = true;
+      excludePackages = [ pkgs.xterm ];
       layout = "us";
       libinput.enable = true;
       displayManager = {
