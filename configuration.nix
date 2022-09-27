@@ -94,8 +94,7 @@
       rust-analyzer
       git
       gnomeExtensions.material-shell
-      vimPlugins.vim-nix
-      vimPlugins.coc-rust-analyzer
+      nodejs-16_x
     ];
   };
 
@@ -107,6 +106,21 @@
       viAlias = true;
       vimAlias = true;
       defaultEditor = true;
+      configure = {
+        customRC = ''
+          set undofile
+          set undodir=~/.vim/undodir
+        '';
+        packages.nix.start = with pkgs.vimPlugins; [ 
+          vim-nix 
+          coc-nvim
+          coc-rust-analyzer
+          copilot-vim 
+          coc-git
+          coc-highlight
+          rainbow
+        ];
+      };
     };
     starship = {
       enable = true;
