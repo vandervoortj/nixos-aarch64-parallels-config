@@ -6,13 +6,21 @@
       ./hardware-configuration.nix
     ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/EFI";
-  boot.plymouth.enable = true;
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/EFI";
+      };
+    };
+    plymouth.enable = true;
+  };
 
-  networking.hostName = "nixos-macbook"; 
-  networking.networkmanager.enable = true;  
+  networking = {
+    hostname = "nixos-macbook";
+    networkmanager.enable = true;
+  };
 
   time.timeZone = "America/Toronto";
 
@@ -22,27 +30,38 @@
     useXkbConfig = true;
   };
 
-  services.xserver.enable = true;
-  services.xserver.layout = "us";
-
-  services.dnsmasq.enable = true;
-
-  services.printing.enable = true;
-  services.gnome.chrome-gnome-shell.enable = true;
-  services.gnome.gnome-keyring.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.autoLogin = {
-    enable = true;
-    user = "jom";
+  services = {
+    xserver = {
+      enable = true;
+      layout = "us";
+      libinput.enable = true;
+      displayManager = {
+        gdm = {
+          enable = true;
+          autoSuspend = false;
+        };
+        autoLogin = {
+          enable = true;
+          user = "jom";
+        };
+      };
+      desktopManager.gnome.enable = true;
+    };
+    printing.enable = true;
+    dnsmasq.enable = true;
+    openssh.enable = true;
+    gnome = {
+      chrome-gnome-shell.enable = true;
+      gnome-keyring.enable = true;
+    };
   };
-  services.xserver.displayManager.gdm.autoSuspend = false;
 
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
-  hardware.parallels.enable = true;
 
-  services.xserver.libinput.enable = true;
+  hardware = {
+    pulseaudio.enable = true;
+    parallels.enable = true;
+  };
 
   users.users.jom = {
     isNormalUser = true;
@@ -73,29 +92,37 @@
     git
   ];
 
-  programs.mtr.enable = true;
-  programs.fish.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+  programs = {
+    mtr.enable = true;
+    fish.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
   };
-
-  services.openssh.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
-  nix.gc.automatic = true;
-  nix.gc.options = "--delete-older-than 7d";
-  nix.gc.dates = "weekly";
-  nix.optimise.automatic = true;
-  nix.optimise.dates = [ 
-                          "weekly"
-                       ];
+  nix = {
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 7d";
+      dates = "weekly";
+    };
+    optimise = {
+      automatic = true;
+      dates = [ "weekly" ];
+    };
+  };
 
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.channel = "nixos-unstable";
-  system.autoUpgrade.persistent = true;
-  system.autoUpgrade.allowReboot = true;
-  system.stateVersion = "22.05"; 
+  system = {
+    stateVersion = "22.05";
+    autoUpgrade = {
+      enable = true;
+      channel = "nixos-unstable";
+      persistent = true;
+      allowReboot = true;
+    };
+  };
 }
 
