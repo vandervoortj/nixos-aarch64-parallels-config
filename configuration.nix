@@ -99,7 +99,20 @@
   programs = {
     mtr.enable = true;
     fish.enable = true;
-    starship.enable = true;
+    starship = {
+      enable = true;
+      settings = {
+        "add_newline" = false;
+        "format" = "$all";
+        "scan_timeout" = 30;
+        "username" = {
+          "format" = "[$user]($style)";
+          "style_user" = "bold green";
+          "show_always" = true;
+          "style_root" = "bold red";
+        };
+      };
+    };
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
