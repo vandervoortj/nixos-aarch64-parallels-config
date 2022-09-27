@@ -18,7 +18,7 @@
   };
 
   networking = {
-    hostname = "nixos-macbook";
+    hostName = "nixos-macbook";
     networkmanager.enable = true;
   };
 
