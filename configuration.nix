@@ -30,6 +30,8 @@
     useXkbConfig = true;
   };
 
+  powerManagement.enable = false;
+
   #disabled parallels print service as it was endlessly executing lpstat and timing out
   #disable printer sharing in parallels options and switch shared network to bridged to use network
   #printers
@@ -63,6 +65,7 @@
     gnome = {
       chrome-gnome-shell.enable = true;
       gnome-keyring.enable = true;
+      gnome-settings-daemon.enable = true;
     };
   };
 
