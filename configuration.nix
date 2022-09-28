@@ -78,26 +78,29 @@
     memoryPercent = 25;
   };
 
-  users.users.jom = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ]; 
-    packages = with pkgs; [
-      chromium
-      github-desktop
-      gh
-      (vscode-with-extensions.override {
-        vscodeExtensions = with vscode-extensions; [
-          bbenoist.nix
-          matklad.rust-analyzer
-          github.copilot
-          formulahendry.code-runner
-        ];
-      })
-    ];
-    shell = pkgs.fish;
+  users = {
+    defaultUserShell = pkgs.fish;
+    users.jom = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" ]; 
+      packages = with pkgs; [
+        chromium
+        github-desktop
+        gh
+        (vscode-with-extensions.override {
+          vscodeExtensions = with vscode-extensions; [
+            bbenoist.nix
+            matklad.rust-analyzer
+            github.copilot
+            formulahendry.code-runner
+          ];
+        })
+      ];
+    };
   };
 
   environment = {
+    shells = [ pkgs.fish ];
     gnome.excludePackages = [ pkgs.gnome-tour ];
     systemPackages = with pkgs; [
       vim 
@@ -133,6 +136,7 @@
           coc-git
           coc-highlight
           rainbow
+          vim-fugitive
         ];
       };
     };
