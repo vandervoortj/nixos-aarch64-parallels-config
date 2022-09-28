@@ -30,6 +30,8 @@
     useXkbConfig = true;
   };
 
+  systemd.services.prlshprint.enable = pkgs.lib.mkForce false;
+
   services = {
     xserver = {
       enable = true;
