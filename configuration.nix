@@ -64,6 +64,11 @@
     parallels.enable = true;
   };
 
+  zramSwap = {
+    enable = true;
+    memoryPercent = 25;
+  };
+
   users.users.jom = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; 
