@@ -30,9 +30,16 @@
     useXkbConfig = true;
   };
 
+  #disabled parallels print service as it was endlessly executing lpstat and timing out
+  #disable printer sharing in parallels options and switch shared network to bridged to use network
+  #printers
   systemd.services.prlshprint.enable = pkgs.lib.mkForce false;
 
   services = {
+    avahi = {
+      enable = true;
+      nssmdns = true;
+    };
     xserver = {
       enable = true;
       excludePackages = [ pkgs.xterm ];
