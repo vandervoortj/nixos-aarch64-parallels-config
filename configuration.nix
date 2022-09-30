@@ -88,8 +88,11 @@
       extraGroups = [ "wheel" ]; 
       packages = with pkgs; [
         chromium
-        github-desktop
         gh
+        himalaya
+        pass
+        pass-wayland
+        fd
         (vscode-with-extensions.override {
           vscodeExtensions = with vscode-extensions; [
             bbenoist.nix
@@ -106,7 +109,6 @@
     shells = [ pkgs.fish ];
     gnome.excludePackages = [ pkgs.gnome-tour ];
     systemPackages = with pkgs; [
-      vim 
       wget
       cargo
       rustup
@@ -140,6 +142,7 @@
           coc-highlight
           rainbow
           vim-fugitive
+          himalaya-vim
         ];
       };
     };
